@@ -26,7 +26,7 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
-        if (User::where('email',$request->email)->first()->status == 0) {
+        if (User::where('email',$request->email)->where('status',0)->exists()) {
             return false;
         }else{
             return $this->guard()->attempt(

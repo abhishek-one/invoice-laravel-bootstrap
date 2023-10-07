@@ -41,6 +41,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(count($data) == 0)
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No buyers found. Please add new Buyer.
+                        </td>
+                    </tr>
+                    @else
                     @foreach($data as $buyer_data)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
@@ -52,6 +59,7 @@
                         </td>
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -362,7 +370,7 @@
                         id: delete_id,
                     },
                     success: function(response) {
-                       window.location.reload()
+                        window.location.reload()
                     }
                 });
 
