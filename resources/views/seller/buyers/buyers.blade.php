@@ -50,7 +50,7 @@
                     @else
                     @foreach($data as $buyer_data)
                     <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
+                        <td scope="row">{{$loop->iteration}}</td>
                         <td>{{$buyer_data->first_name.' '.$buyer_data->middle_name.' '.$buyer_data->last_name}}</td>
                         <td>{{$buyer_data->vat_number}}</td>
                         <td>
