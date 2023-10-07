@@ -1,0 +1,154 @@
+* {
+    font-family: Poppins, sans-serif;
+}
+
+body {
+    background-color: #DEF2F1;
+}
+
+.card-header {
+    background-color: #3AAFA9;
+    color: white;
+
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid #3AAFA9;
+}
+
+.nav-link {
+    margin-right: 5px;
+    margin-left: 5px;
+    border-bottom: 2px solid white;
+}
+
+.nav-link {
+    color: #17252A;
+}
+
+.nav-link:hover {
+    color: #2B7A78;
+}
+
+.btn-primary {
+    color: white;
+    background-color: #2B7A78;
+    border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active:focus {
+    background-color: #3AAFA9;
+}
+
+.dropdown-item,
+.dropdown-menu {
+    background-color: whitesmoke;
+}
+
+.dropdown-item:hover {
+    background-color: #3AAFA9;
+    color: white;
+}
+
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.invalid-feedback {
+    font-weight: 300;
+    display: block;
+    font-size: 75%;
+    color: red;
+    padding:1%;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px #2B7A78;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #3AAFA9;
+}
+
+.arabic {
+    direction: rtl;
+    font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+    font-size: 14.3px;
+}
+
+.tableTheme1 {
+    border: hidden;
+}
+
+.tableTheme1 thead tr th {
+    background-color: #2B7A78;
+    color: white;
+    font-weight: 400;
+}
+
+.tableTheme1 tbody tr {
+    border: cadetblue 1px solid
+}
+
+.tableTheme1 thead tr th:first-child {
+    border-top-left-radius: 12px;
+    background-color: #2B7A78;
+    color: white;
+    font-weight: 400;
+}
+
+.tableTheme1 thead tr th:last-child {
+    border-top-right-radius: 12px;
+    background-color: #2B7A78;
+    color: white;
+    font-weight: 400;
+}
+
+.tableTheme1 tbody tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 12px;
+}
+
+.tableTheme1 tbody tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 12px;
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+
+    .dialog-width {
+        min-width: 90%
+    }
+
+}
+
+/* Web devices */
+@media only screen and (min-width: 768px) {
+    .dialog-width {
+        min-width: 50%
+    }
+}
+
+label.error{
+    font-size: 75%;
+    padding:1%;
+    padding-bottom: 0;
+    color: red;
+}
