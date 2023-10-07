@@ -66,27 +66,57 @@ class InvoiceController extends Controller
             $invoice->user_id = Auth::user()->id;
             $invoice->type_of_invoice = $request->type_of_invoice;
 
-            $seller = SellerDetail::where('user_id',Auth::user()->id)->first();
+            $seller = SellerDetail::where('user_id', Auth::user()->id)->first();
 
             $invoice->seller_name = $seller->first_name . ' ' . $seller->middle_name . ' ' . $seller->last_name;
             $invoice->seller_building_number = $seller->building_number;
             $invoice->seller_street = $seller->street;
             $invoice->seller_district = $seller->district;
             $invoice->seller_city = $seller->city;
-            $invoice->seller_country = $seller->country;
             $invoice->seller_pincode = $seller->pincode;
             $invoice->seller_additional_number = $seller->additional_number;
             $invoice->seller_vat_number = $seller->vat_number;
             $invoice->seller_cr_number = $seller->cr_number;
+
             $invoice->account_name = $seller->account_name;
             $invoice->bank_name = $seller->bank_name;
             $invoice->account_number = $seller->account_number;
             $invoice->iban_number = $seller->iban_number;
 
+            $invoice->seller_name_ar = $seller->first_name_ar . ' ' . $seller->middle_name_ar  . ' ' . $seller->last_name_ar;
+            $invoice->seller_building_number_ar = $seller->building_number_ar;
+            $invoice->seller_street_ar = $seller->street_ar;
+            $invoice->seller_district_ar = $seller->district_ar;
+            $invoice->seller_city_ar = $seller->city_ar;
+            $invoice->seller_additional_number_ar = $seller->additional_number_ar;
+            $invoice->seller_vat_number_ar = $seller->vat_number_ar;
+            $invoice->seller_cr_number_ar = $seller->cr_number_ar;
+
             if ($request->type_of_invoice == 1) {   // Simplified
 
                 $invoice->save();
-                // dd('here');
+
+                $items_ids = [];
+
+                for ($i = 0; $i < $invoice->item_count; $i++) {
+                    $invoice_items = new InvoiceItem();
+                    $invoice_items->invoice_id = $invoice->id;
+                    $invoice_items->description = $request->description;
+                    $invoice_items->unit_price = $request->unit_price;
+                    $invoice_items->quantity = $request->quantity;
+                    $invoice_items->taxable_amount = $request->taxable_amount;
+                    $invoice_items->tax_rate = $request->tax_rate;
+                    $invoice_items->tax_amount = $request->tax_amount;
+                    $invoice_items->subtotal = $request->subtotal;
+                    $invoice_items->save();
+                    array_push($items_ids, $invoice_items->id);
+                }
+                $items_ids = json_encode($items_ids);
+                $invoice_number = 'INVO00' . $invoice->id;
+                Invoice::where('id', $invoice->id)->update([
+                    'items_ids' => $items_ids,
+                    "invoice_number" => 'INVO00' . $invoice->id
+                ]);
             } else if ($request->type_of_invoice == 2) {  // Tax invoice
 
                 $validator3 = Validator::make(request()->only('buyer_id'), [

@@ -23,27 +23,42 @@ return new class extends Migration
             $table->string('seller_street');
             $table->string('seller_district');
             $table->string('seller_city');
-            $table->string('seller_country');
             $table->string('seller_pincode');
             $table->string('seller_additional_number');
             $table->string('seller_vat_number');
             $table->string('seller_cr_number');
 
+            $table->string('seller_name_ar');
+            $table->string('seller_building_number_ar');
+            $table->string('seller_street_ar');
+            $table->string('seller_district_ar');
+            $table->string('seller_city_ar');
+            $table->string('seller_additional_number_ar');
+            $table->string('seller_vat_number_ar');
+            $table->string('seller_cr_number_ar');
 
             $table->string('buyer_name')->nullable();
             $table->string('buyer_building_number')->nullable();
             $table->string('buyer_street')->nullable();
             $table->string('buyer_district')->nullable();
             $table->string('buyer_city')->nullable();
-            $table->string('buyer_country')->nullable();
             $table->string('buyer_pincode')->nullable();
             $table->string('buyer_additional_number')->nullable();
             $table->string('buyer_vat_number')->nullable();
             $table->string('buyer_cr_number')->nullable();
 
-            $table->string('items_total');
-            $table->string('total_vat');
-            $table->string('total_amount');
+            $table->string('buyer_name_ar')->nullable();
+            $table->string('buyer_building_number_ar')->nullable();
+            $table->string('buyer_street_ar')->nullable();
+            $table->string('buyer_district_ar')->nullable();
+            $table->string('buyer_city_ar')->nullable();
+            $table->string('buyer_additional_number_ar')->nullable();
+            $table->string('buyer_vat_number_ar')->nullable();
+            $table->string('buyer_cr_number_ar')->nullable();
+
+            $table->string('items_total')->nullable();
+            $table->string('total_vat')->nullable();
+            $table->string('total_amount')->nullable();
 
             $table->string('account_name');
             $table->string('bank_name');
