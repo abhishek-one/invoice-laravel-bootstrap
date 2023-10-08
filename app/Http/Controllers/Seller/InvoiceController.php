@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\SellerDetail;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 use Salla\ZATCA\GenerateQrCode;
 use Salla\ZATCA\Tags\InvoiceDate;
 use Salla\ZATCA\Tags\InvoiceTaxAmount;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use PDF;
 
 class InvoiceController extends Controller
 {
@@ -112,7 +112,7 @@ class InvoiceController extends Controller
                     array_push($items_ids, $invoice_items->id);
                 }
                 $items_ids = json_encode($items_ids);
-                $invoice_number = 'INVO00' . $invoice->id;
+                $invoice_number = 'INVO00125' . $invoice->id;
                 Invoice::where('id', $invoice->id)->update([
                     'items_ids' => $items_ids,
                     "invoice_number" => 'INVO00' . $invoice->id
@@ -158,29 +158,31 @@ class InvoiceController extends Controller
                 array_push($items_ids, $invoice_items->id);
             }
             $items_ids = json_encode($items_ids);
-            $invoice_number = 'INVO00' . $invoice->id;
+            $invoice_number = 'INVO00125' . $invoice->id;
             Invoice::where('id', $invoice->id)->update([
                 'items_ids' => $items_ids,
-                "invoice_number" => 'INVO00' . $invoice->id
+                "invoice_number" => 'INVO00125' . $invoice->id
             ]);
 
             $data = Invoice::leftJoin('invoice_items', 'invoice_items.id', '=', 'invoices.id')
                 ->where('invoices.id', $invoice->id)->first();
 
-            $data = $this->generate_qr($data);
-
-            $pdf = PDF::loadView('seller.invoices.print_invoice', compact('data'))
-                ->setOption('enable-local-file-access', true)
-                ->setOption('margin-top', '15mm');
+            $qr = $this->generate_qr($data);
 
             $file_path =  'invoices' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
-            $pdf->save($file_path . $file_name);
+
+            Pdf::loadView('seller.invoices.print_invoice', compact('qr'))
+                ->setOption('enable-local-file-access', true)
+                ->setOption('margin-top', '15mm')
+                ->save($file_path . $file_name);
+
+            
 
 
 
-            return view('seller.invoices.print_invoice', compact('data'));
 
+            // return view('seller.invoices.print_invoice', compact('data'));
         } catch (\Exception $err) {
             Log::error('save_to_print Error - Message: ' . $err->getMessage() . ' in file ' . $err->getFile() .  ' on line ' .  $err->getLine());
             return response()->json(['message' => ['Something went wrong.']], 500);

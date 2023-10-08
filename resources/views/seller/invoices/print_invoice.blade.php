@@ -1,1 +1,1 @@
-<img src="{{$data}}" alt="QR Code" />
+<img src="{{$qr}}" alt="QR Code" />
