@@ -164,18 +164,21 @@ class InvoiceController extends Controller
                 "invoice_number" => 'INVO00' . $invoice->id
             ]);
 
-            $data = Invoice::join('invoice_items', 'invoice_items.id', '=', 'invoices.id')
-                ->where('id', $invoice->id)->get();
+            $data = Invoice::leftjoin('invoice_items', 'invoice_items.id', '=', 'invoices.id')
+                ->where('invoices.id', $invoice->id)->first();
+
             $data['qr'] = $this->generate_qr($data);
 
-            $pdf = PDF::loadView('client.agent.insurance.pdf.invoice', compact('invoice'))
+            $pdf = PDF::loadView('seller.invoices.print_invoice', compact('invoice'))
                 ->setOption('enable-local-file-access', true)
                 ->setOption('margin-top', '15mm');
+
             $file_path =  'invoice' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
             $pdf->save($file_path . $file_name);
 
-            return view('invoices.print_invoice', compact('data'));
+            return view('seller.invoices.print_invoice', compact('data'));
+
         } catch (\Exception $err) {
             Log::error('save_to_print Error - Message: ' . $err->getMessage() . ' in file ' . $err->getFile() .  ' on line ' .  $err->getLine());
             return response()->json(['message' => ['Something went wrong.']], 500);
