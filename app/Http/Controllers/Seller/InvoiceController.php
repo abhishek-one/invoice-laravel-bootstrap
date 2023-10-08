@@ -172,9 +172,9 @@ class InvoiceController extends Controller
             $file_path =  'invoices' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
 
-            Pdf::loadView('seller.invoices.print_invoice', compact('qr'))
+            Pdf::loadView('seller.invoices.print_invoice', compact('qr','data'))
                 ->setOption('enable-local-file-access', true)
-                ->setOption('margin-top', '15mm')
+                ->setOption(['margin-top'=>'15mm','isHtml5ParserEnabled' => true, ])
                 ->save($file_path . $file_name);
 
             
