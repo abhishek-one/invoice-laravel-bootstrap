@@ -164,18 +164,20 @@ class InvoiceController extends Controller
                 "invoice_number" => 'INVO00' . $invoice->id
             ]);
 
-            $data = Invoice::leftjoin('invoice_items', 'invoice_items.id', '=', 'invoices.id')
+            $data = Invoice::leftJoin('invoice_items', 'invoice_items.id', '=', 'invoices.id')
                 ->where('invoices.id', $invoice->id)->first();
 
-            $data['qr'] = $this->generate_qr($data);
+            $data = $this->generate_qr($data);
 
-            $pdf = PDF::loadView('seller.invoices.print_invoice', compact('invoice'))
+            $pdf = PDF::loadView('seller.invoices.print_invoice', compact('data'))
                 ->setOption('enable-local-file-access', true)
                 ->setOption('margin-top', '15mm');
 
-            $file_path =  'invoice' . DIRECTORY_SEPARATOR;
+            $file_path =  'invoices' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
             $pdf->save($file_path . $file_name);
+
+
 
             return view('seller.invoices.print_invoice', compact('data'));
 
@@ -186,11 +188,11 @@ class InvoiceController extends Controller
     }
     public function generate_qr($data)
     {
-        $displayQRCodeAsBase64 = GenerateQrCode::fromArray([
+        return GenerateQrCode::fromArray([
             new Seller($data->seller_name), // seller name        
             new TaxNumber($data->vat_number), // seller tax number
-            new InvoiceDate('2021-07-12T14:25:09Z'), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
-            new InvoiceTotalAmount($data->subtotal), // invoice total amount
+            new InvoiceDate(now()), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            new InvoiceTotalAmount($data->total_amount), // invoice total amount
             new InvoiceTaxAmount('15.00') // invoice tax amount
         ])->render();
     }
