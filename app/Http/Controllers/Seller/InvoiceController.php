@@ -95,28 +95,6 @@ class InvoiceController extends Controller
             if ($request->type_of_invoice == 1) {   // Simplified
 
                 $invoice->save();
-
-                $items_ids = [];
-
-                for ($i = 0; $i < $invoice->item_count; $i++) {
-                    $invoice_items = new InvoiceItem();
-                    $invoice_items->invoice_id = $invoice->id;
-                    $invoice_items->description = $request->description;
-                    $invoice_items->unit_price = $request->unit_price;
-                    $invoice_items->quantity = $request->quantity;
-                    $invoice_items->taxable_amount = $request->taxable_amount;
-                    $invoice_items->tax_rate = $request->tax_rate;
-                    $invoice_items->tax_amount = $request->tax_amount;
-                    $invoice_items->subtotal = $request->subtotal;
-                    $invoice_items->save();
-                    array_push($items_ids, $invoice_items->id);
-                }
-                $items_ids = json_encode($items_ids);
-                $invoice_number = 'INVO00125' . $invoice->id;
-                Invoice::where('id', $invoice->id)->update([
-                    'items_ids' => $items_ids,
-                    "invoice_number" => 'INVO00' . $invoice->id
-                ]);
             } else if ($request->type_of_invoice == 2) {  // Tax invoice
 
                 $validator3 = Validator::make(request()->only('buyer_id'), [
@@ -143,17 +121,16 @@ class InvoiceController extends Controller
 
             $items_ids = [];
 
-
-            for ($i = 0; $i < $invoice->item_count; $i++) {
-                $invoice_items = new InvoiceItem();
+            for ($i = 0; $i < count(request()->description); $i++) {
+                $invoice_items = new InvoiceItem;
                 $invoice_items->invoice_id = $invoice->id;
-                $invoice_items->description = $request->description;
-                $invoice_items->unit_price = $request->unit_price;
-                $invoice_items->quantity = $request->quantity;
-                $invoice_items->taxable_amount = $request->taxable_amount;
-                $invoice_items->tax_rate = $request->tax_rate;
-                $invoice_items->tax_amount = $request->tax_amount;
-                $invoice_items->subtotal = $request->subtotal;
+                $invoice_items->description = ($request->description)[$i];
+                $invoice_items->unit_price = ($request->unit_price)[$i];
+                $invoice_items->quantity = ($request->quantity)[$i];
+                $invoice_items->taxable_amount = ($request->taxable_amount)[$i];
+                $invoice_items->tax_rate = ($request->tax_rate)[$i];
+                $invoice_items->tax_amount = ($request->tax_amount)[$i];
+                $invoice_items->subtotal = ($request->subtotal)[$i];
                 $invoice_items->save();
                 array_push($items_ids, $invoice_items->id);
             }
@@ -164,20 +141,24 @@ class InvoiceController extends Controller
                 "invoice_number" => 'INVO00125' . $invoice->id
             ]);
 
-            $data = Invoice::leftJoin('invoice_items', 'invoice_items.id', '=', 'invoices.id')
-                ->where('invoices.id', $invoice->id)->first();
+            $data = InvoiceItem::leftJoin('invoices', 'invoices.id', '=', 'invoice_items.invoice_id')
+                ->where('invoices.id', $invoice->id)
+                ->get()
+                ->toArray();
+
+            // dd($data);
 
             $qr = $this->generate_qr($data);
 
             $file_path =  'invoices' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
 
-            Pdf::loadView('seller.invoices.print_invoice', compact('qr','data'))
+            Pdf::loadView('seller.invoices.print_invoice', compact('qr', 'data'))
                 ->setOption('enable-local-file-access', true)
-                ->setOption(['margin-top'=>'15mm','isHtml5ParserEnabled' => true, ])
+                ->setOption(['margin-top' => '15mm', 'isHtml5ParserEnabled' => true,])
                 ->save($file_path . $file_name);
 
-            
+
 
 
 
@@ -191,10 +172,10 @@ class InvoiceController extends Controller
     public function generate_qr($data)
     {
         return GenerateQrCode::fromArray([
-            new Seller($data->seller_name), // seller name        
-            new TaxNumber($data->vat_number), // seller tax number
+            new Seller($data[0]['seller_name']), // seller name        
+            new TaxNumber($data[0]['seller_vat_number']), // seller tax number
             new InvoiceDate(now()), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
-            new InvoiceTotalAmount($data->total_amount), // invoice total amount
+            new InvoiceTotalAmount($data[0]['total_amount']), // invoice total amount
             new InvoiceTaxAmount('15.00') // invoice tax amount
         ])->render();
     }
