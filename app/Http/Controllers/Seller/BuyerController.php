@@ -110,6 +110,7 @@ class BuyerController extends Controller
         } else {
 
             SellerBuyersDetail::updateOrInsert(['id' => $data['id']], [
+                'seller_id' => Auth::user()->id,
                 'first_name' => $data['first_name'],
                 'middle_name' => $data['middle_name'],
                 'last_name' => $data['last_name'],

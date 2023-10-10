@@ -102,8 +102,8 @@
             </tr>
             <tr>
                 <td>Country</td>
-                <td>{{--$data[0]['seller_country']--}}</td>
-                <td>{{--$data[0]['seller_country_ar']--}}</td>
+                <td>{{$data[0]['seller_country']}}</td>
+                <td>{{$data[0]['seller_country_ar']}}</td>
                 <td>دولة</td>
             </tr>
             <tr>
@@ -181,7 +181,7 @@
             <tr>
                 <td>Postal Code</td>
                 <td>{{$data[0]['buyer_pincode']}}</td>
-                <td>{{$data[0]['buyer_pincode_ar']}}</td>
+                <td>{{$data[0]['buyer_pincode']}}</td>
                 <td>رمز بريدي</td>
             </tr>
             <tr>
@@ -238,17 +238,17 @@
         <tr>
             <th>Total (Excluding VAT)</th>
             <th>الإجمالي (باستثناء ضريبة القيمة المضافة)</th>
-            <td></td>
+            <td>{{$data[0]['items_total']}}</td>
         </tr>
         <tr>
             <th>Total VAT</th>
             <th>إجمالي ضريبة القيمة المضافة</th>
-            <td></td>
+            <td>{{$data[0]['total_vat']}}</td>
         </tr>
         <tr>
             <th>Total Amount</th>
             <th>المبلغ الإجمالي</th>
-            <td></td>
+            <td>{{$data[0]['total_amount']}}</td>
         </tr>
     </table>
 </div>

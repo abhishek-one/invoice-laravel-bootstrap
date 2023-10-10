@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
+use App\Models\SellerBuyersDetail;
 use App\Models\SellerDetail;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as Pdf;
@@ -23,6 +24,13 @@ use Illuminate\Support\Facades\Validator;
 
 class InvoiceController extends Controller
 {
+
+    public function view_tax_invoice()
+    {
+        $buyers = SellerBuyersDetail::where('seller_id', Auth::user()->id)->get();
+        return view('seller.invoices.tax_invoice', compact('buyers'));
+    }
+
     public function generate_invoice(Request $request)
     {
         try {
@@ -66,7 +74,7 @@ class InvoiceController extends Controller
             $invoice->user_id = Auth::user()->id;
             $invoice->type_of_invoice = $request->type_of_invoice;
 
-            $seller = SellerDetail::where('user_id', Auth::user()->id)->first();
+            $seller = SellerDetail::where('id', Auth::user()->id)->first();
 
             $invoice->seller_name = $seller->first_name . ' ' . $seller->middle_name . ' ' . $seller->last_name;
             $invoice->seller_building_number = $seller->building_number;
@@ -77,6 +85,7 @@ class InvoiceController extends Controller
             $invoice->seller_additional_number = $seller->additional_number;
             $invoice->seller_vat_number = $seller->vat_number;
             $invoice->seller_cr_number = $seller->cr_number;
+            $invoice->seller_country = $seller->country;
 
             $invoice->account_name = $seller->account_name;
             $invoice->bank_name = $seller->bank_name;
@@ -91,35 +100,52 @@ class InvoiceController extends Controller
             $invoice->seller_additional_number_ar = $seller->additional_number_ar;
             $invoice->seller_vat_number_ar = $seller->vat_number_ar;
             $invoice->seller_cr_number_ar = $seller->cr_number_ar;
+            $invoice->seller_country_ar = $seller->country_ar;
+
 
             if ($request->type_of_invoice == 1) {   // Simplified
 
                 $invoice->save();
             } else if ($request->type_of_invoice == 2) {  // Tax invoice
 
-                $validator3 = Validator::make(request()->only('buyer_id'), [
-                    'buyer_id' => 'required|exists:users,id',
+                $validator3 = Validator::make(request()->only('buyer'), [
+                    'buyer' => 'required|exists:users,id',
                 ]);
                 if ($validator3->fails()) {
                     return response()->json(['message' => $validator3->errors()->all()], 400);
                 }
 
-                $buyer = User::find($request->buyer_id)->first();
+                $buyer = SellerBuyersDetail::find($request->buyer)->first();
 
                 $invoice->buyer_name = $buyer->first_name . ' ' . $buyer->middle_name . ' ' . $buyer->last_name;
                 $invoice->buyer_building_number = $buyer->building_number;
                 $invoice->buyer_street = $buyer->street;
                 $invoice->buyer_district = $buyer->district;
-                $invoice->buyer_city = $buyer->buyer_city;
-                $invoice->buyer_country = $buyer->buyer_country;
-                $invoice->buyer_pincode = $buyer->buyer_pincode;
-                $invoice->buyer_additional_number = $buyer->buyer_additional_number;
-                $invoice->buyer_vat_number = $buyer->buyer_vat_number;
-                $invoice->buyer_cr_number = $buyer->buyer_cr_number;
+                $invoice->buyer_city = $buyer->city;
+                $invoice->buyer_pincode = $buyer->pincode;
+                $invoice->buyer_additional_number = $buyer->additional_number;
+                $invoice->buyer_vat_number = $buyer->vat_number;
+                $invoice->buyer_cr_number = $buyer->cr_number;
+                $invoice->buyer_country = $buyer->country;
+
+                $invoice->buyer_name_ar = $buyer->first_name_ar . ' ' . $buyer->middle_name_ar  . ' ' . $buyer->last_name_ar;
+                $invoice->buyer_building_number_ar = $buyer->building_number_ar;
+                $invoice->buyer_street_ar = $buyer->street_ar;
+                $invoice->buyer_district_ar = $buyer->district_ar;
+                $invoice->buyer_city_ar = $buyer->city_ar;
+                $invoice->buyer_additional_number_ar = $buyer->additional_number_ar;
+                $invoice->buyer_vat_number_ar = $buyer->vat_number_ar;
+                $invoice->buyer_cr_number_ar = $buyer->cr_number_ar;
+                $invoice->buyer_country_ar = $buyer->country_ar;
+
                 $invoice->save();
             }
 
             $items_ids = [];
+            $total_subtotal = 0;
+            $total_tax_amount = 0;
+            $total_taxable_amount = 0;
+
 
             for ($i = 0; $i < count(request()->description); $i++) {
                 $invoice_items = new InvoiceItem;
@@ -133,12 +159,19 @@ class InvoiceController extends Controller
                 $invoice_items->subtotal = ($request->subtotal)[$i];
                 $invoice_items->save();
                 array_push($items_ids, $invoice_items->id);
+
+                $total_tax_amount = ($request->tax_amount)[$i] + $total_tax_amount;
+                $total_subtotal = ($request->subtotal)[$i] + $total_subtotal;
+                $total_taxable_amount = ($request->taxable_amount)[$i] + $total_taxable_amount;
             }
             $items_ids = json_encode($items_ids);
             $invoice_number = 'INVO00125' . $invoice->id;
             Invoice::where('id', $invoice->id)->update([
-                'items_ids' => $items_ids,
-                "invoice_number" => 'INVO00125' . $invoice->id
+                "items_ids" => $items_ids,
+                "invoice_number" => 'INVO00125' . $invoice->id,
+                "items_total" => $total_tax_amount,
+                "total_vat" => $total_subtotal,
+                "total_amount" => $total_taxable_amount,
             ]);
 
             $data = InvoiceItem::leftJoin('invoices', 'invoices.id', '=', 'invoice_items.invoice_id')
@@ -158,12 +191,9 @@ class InvoiceController extends Controller
                 ->setOption(['margin-top' => '15mm', 'isHtml5ParserEnabled' => true,])
                 ->save($file_path . $file_name);
 
-
-
-
-
-
-            // return view('seller.invoices.print_invoice', compact('data'));
+            $response = [];
+            $response['pdf_url'] = url($file_path . $file_name);
+            return $response;
         } catch (\Exception $err) {
             Log::error('save_to_print Error - Message: ' . $err->getMessage() . ' in file ' . $err->getFile() .  ' on line ' .  $err->getLine());
             return response()->json(['message' => ['Something went wrong.']], 500);
@@ -176,7 +206,7 @@ class InvoiceController extends Controller
             new TaxNumber($data[0]['seller_vat_number']), // seller tax number
             new InvoiceDate(now()), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
             new InvoiceTotalAmount($data[0]['total_amount']), // invoice total amount
-            new InvoiceTaxAmount('15.00') // invoice tax amount
+            new InvoiceTaxAmount($data[0]['total_vat']) // invoice tax amount
         ])->render();
     }
 }
