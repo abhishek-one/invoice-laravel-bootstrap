@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('seller_additional_number');
             $table->string('seller_vat_number');
             $table->string('seller_cr_number');
+            $table->string('seller_country');
 
             $table->string('seller_name_ar');
             $table->string('seller_building_number_ar');
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->string('seller_additional_number_ar');
             $table->string('seller_vat_number_ar');
             $table->string('seller_cr_number_ar');
+            $table->string('seller_country_ar');
 
             $table->string('buyer_name')->nullable();
             $table->string('buyer_building_number')->nullable();
@@ -46,6 +48,8 @@ return new class extends Migration
             $table->string('buyer_additional_number')->nullable();
             $table->string('buyer_vat_number')->nullable();
             $table->string('buyer_cr_number')->nullable();
+            $table->string('buyer_country')->nullable();
+
 
             $table->string('buyer_name_ar')->nullable();
             $table->string('buyer_building_number_ar')->nullable();
@@ -55,6 +59,8 @@ return new class extends Migration
             $table->string('buyer_additional_number_ar')->nullable();
             $table->string('buyer_vat_number_ar')->nullable();
             $table->string('buyer_cr_number_ar')->nullable();
+            $table->string('buyer_country_ar')->nullable();
+
 
             $table->string('items_total')->nullable();
             $table->string('total_vat')->nullable();

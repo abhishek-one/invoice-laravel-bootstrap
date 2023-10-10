@@ -50,7 +50,7 @@
 
             <tr>
                 <th>Invoice Date تاريخ الفاتورة</th>
-                <td>{{$data[0]['created_at']}}</td>
+                <td>{{date('d-m-Y', strtotime($data[0]['created_at']))}}</td>
             </tr>
 
         </table>

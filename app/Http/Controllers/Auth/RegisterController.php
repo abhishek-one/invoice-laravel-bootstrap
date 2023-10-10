@@ -89,6 +89,8 @@ class RegisterController extends Controller
                 'vat_number_ar' => ['required', 'string', 'max:255'],
                 'cr_number' => ['required', 'string', 'max:255'],
                 'cr_number_ar' => ['required', 'string', 'max:255'],
+                'country' => ['required', 'string', 'max:255'],
+                'country_ar' => ['required', 'string', 'max:255'],
             ],
             [
                 'first_name_ar.required' => 'حقل الاسم الأول مطلوب.',
@@ -135,6 +137,10 @@ class RegisterController extends Controller
                 'cr_number_ar.required' => 'حقل الرقم التجاري مطلوب.',
                 'cr_number_ar.string' => 'يجب أن يكون الرقم التجاري نصًا.',
                 'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 255 حرفًا.',
+
+                'country_ar.required' => 'حقل البلد مطلوب.',
+                'country_ar.string' => 'يجب أن يكون البلد نصًا.',
+                'country_ar.max' => 'يجب ألا يتجاوز البلد 255 حرفًا.',                
             ]
         );
     }
@@ -175,6 +181,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'vat_number' => $data['vat_number'],
             'cr_number' => $data['cr_number'],
+            'country' => $data['country'],
 
 
             'first_name_ar' => $data['first_name_ar'],
@@ -189,7 +196,8 @@ class RegisterController extends Controller
             'city_ar' => $data['city_ar'],
             'vat_number_ar' => $data['vat_number_ar'],
             'cr_number_ar' => $data['cr_number_ar'],
-            
+            'country_ar' => $data['country_ar'],
+
         ]);
         return $user;
     }

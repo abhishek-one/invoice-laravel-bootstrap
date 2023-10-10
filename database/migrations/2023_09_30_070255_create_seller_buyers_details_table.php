@@ -38,6 +38,8 @@ return new class extends Migration
             $table->string('vat_number_ar')->nullable();
             $table->string('cr_number')->nullable();
             $table->string('cr_number_ar')->nullable();
+            $table->string('country')->nullable();
+            $table->string('country_ar')->nullable();
             $table->string('account_name')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();

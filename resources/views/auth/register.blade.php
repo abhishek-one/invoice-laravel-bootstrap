@@ -221,6 +221,18 @@
                                 </span>
                                 @enderror
                             </div>
+                            <div class="col">
+                                <div class="my-3">
+                                    <label for="country" class="form-label">{{ __('Country*') }}</label>
+                                    <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" autocomplete="country">
+                                </div>
+
+                                @error('country')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="col-md-6 arabic">
                             <div class="col">
@@ -371,6 +383,18 @@
                                 </div>
 
                                 @error('cr_number_ar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col">
+                                <div class="my-3">
+                                    <label for="country_ar" class="form-label">{{ __('دولة*') }}</label>
+                                    <input id="country_ar" type="text" class="form-control @error('country_ar') is-invalid @enderror" name="country_ar" value="{{ old('country_ar') }}" autocomplete="country_ar">
+                                </div>
+
+                                @error('country_ar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

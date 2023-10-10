@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+    .total-btn {
+        border: 1px solid #3AAFA9;
+        border-radius: 8px;
+        color: black;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -74,9 +82,9 @@
                                 </button>
                             </div>
                             <div class="text-end w-25">
-                                <button class="btn btn-primary me-2">
+                                <a class="p-2 me-2 total-btn text-decoration-none">
                                     {{ __('Total amount: ') }} <span class="total-amount"></span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -99,7 +107,7 @@
             $('.subtotal').each(function() {
                 totalSum += parseFloat($(this).val()) || 0;
             });
-            $('.total-amount').text(totalSum+' SAR')
+            $('.total-amount').text(totalSum + ' SAR')
         }
         $('.subtotal').on('input', function() {
             calculateTotal()
