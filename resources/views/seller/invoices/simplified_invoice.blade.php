@@ -33,25 +33,25 @@
                                 <tbody class="items">
                                     <tr class="item1">
                                         <td class="iteration">1</td>
-                                        <td> <input id="description" type="text" class="form-control" name="description[]" value="" autocomplete="description" autofocus>
+                                        <td> <input type="text" class="form-control" name="description[]" value="" autocomplete="description" autofocus>
 
                                         </td>
-                                        <td> <input id="unit_price" type="text" class="form-control" name="unit_price[]" value="" autocomplete="unit_price" autofocus>
+                                        <td> <input type="text" class="form-control unit_price" name="unit_price[]" value="" autocomplete="unit_price" autofocus>
 
                                         </td>
-                                        <td> <input id="quantity" type="text" class="form-control" name="quantity[]" value="" autocomplete="quantity" autofocus>
+                                        <td> <input type="text" class="form-control quantity" name="quantity[]" value="" autocomplete="quantity" autofocus>
 
                                         </td>
-                                        <td> <input id="taxable_amount" type="text" class="form-control" name="taxable_amount[]" value="" autocomplete="taxable_amount" autofocus>
+                                        <td> <input type="text" class="form-control taxable_amount" name="taxable_amount[]" value="" autocomplete="taxable_amount" autofocus>
 
                                         </td>
-                                        <td> <input id="tax_rate" type="text" class="form-control" name="tax_rate[]" value="" autocomplete="tax_rate" autofocus>
+                                        <td> <input type="text" class="form-control tax_rate" name="tax_rate[]" value="" autocomplete="tax_rate" autofocus>
 
                                         </td>
-                                        <td> <input id="tax_amount" type="text" class="form-control" name="tax_amount[]" value="" autocomplete="tax_amount" autofocus>
+                                        <td> <input type="text" class="form-control tax_amount" name="tax_amount[]" value="" autocomplete="tax_amount" autofocus>
 
                                         </td>
-                                        <td> <input id="subtotal" type="text" class="form-control" name="subtotal[]" value="" autocomplete="subtotal" autofocus>
+                                        <td> <input type="text" class="form-control subtotal" name="subtotal[]" value="" autocomplete="subtotal" autofocus>
 
                                         </td>
                                         <td class="text-center align-middle delete-item">
@@ -62,13 +62,20 @@
                             </table>
                         </div>
 
-                        <div class="row mb-0 text-center">
-                            <div class="">
+                        <div class="row mb-0">
+                            <div class="text-end w-25">
+                            </div>
+                            <div class="text-center w-50">
                                 <button type="button" class="btn btn-primary add-items">
                                     {{ __('+ Add Items') }}
                                 </button>
                                 <button type="submit" class="btn btn-success generate-invoice">
                                     {{ __('Generate Invoice') }}
+                                </button>
+                            </div>
+                            <div class="text-end w-25">
+                                <button class="btn btn-primary me-2">
+                                    {{ __('Total amount: ') }} <span class="total-amount"></span>
                                 </button>
                             </div>
                         </div>
@@ -87,6 +94,17 @@
 <script>
     $().ready(function() {
 
+        function calculateTotal() {
+            var totalSum = 0;
+            $('.subtotal').each(function() {
+                totalSum += parseFloat($(this).val()) || 0;
+            });
+            $('.total-amount').text(totalSum+' SAR')
+        }
+        $('.subtotal').on('input', function() {
+            calculateTotal()
+        })
+
         let i;
 
         $('.add-items').on('click', function() {
@@ -97,31 +115,36 @@
 
             $(`<tr class="item${i}">
                     <td class="iteration">${i}</td>
-                    <td> <input id="description" type="text" class="form-control" name="description[]" value="" autocomplete="description" autofocus>
+                    <td> <input type="text" class="form-control description" name="description[]" value="" autocomplete="description" autofocus>
                        
                     </td>
-                    <td> <input id="unit_price" type="text" class="form-control" name="unit_price[]" value="" autocomplete="unit_price" autofocus>
+                    <td> <input type="text" class="form-control unit_price" name="unit_price[]" value="" autocomplete="unit_price" autofocus>
                         
                     </td>
-                    <td> <input id="quantity" type="text" class="form-control" name="quantity[]" value="" autocomplete="quantity" autofocus>
+                    <td> <input type="text" class="form-control quantity" name="quantity[]" value="" autocomplete="quantity" autofocus>
                         
                         </td>
-                        <td> <input id="taxable_amount" type="text" class="form-control" name="taxable_amount[]" value="" autocomplete="taxable_amount" autofocus>
+                        <td> <input type="text" class="form-control taxable_amount" name="taxable_amount[]" value="" autocomplete="taxable_amount" autofocus>
                             
                         </td>
-                        <td> <input id="tax_rate" type="text" class="form-control" name="tax_rate[]" value="" autocomplete="tax_rate" autofocus>
+                        <td> <input type="text" class="form-control tax_rate" name="tax_rate[]" value="" autocomplete="tax_rate" autofocus>
                            
                         </td>
-                        <td> <input id="tax_amount" type="text" class="form-control" name="tax_amount[]" value="" autocomplete="tax_amount" autofocus>
+                        <td> <input type="text" class="form-control tax_amount" name="tax_amount[]" value="" autocomplete="tax_amount" autofocus>
                             
                         </td>
-                        <td> <input id="subtotal" type="text" class="form-control" name="subtotal[]" value="" autocomplete="subtotal" autofocus>
+                        <td> <input type="text" class="form-control subtotal" name="subtotal[]" value="" autocomplete="subtotal" autofocus>
                            
                         </td>
                         <td class="text-center align-middle delete-item">
                             <i class="fa-solid fa-trash"></i>
                         </td>
                  </tr>`).appendTo($('.items'))
+
+
+            $('.subtotal').on('input', function() {
+                calculateTotal()
+            })
 
 
             $('.delete-item').on('click', function() {
@@ -159,10 +182,10 @@
                         // console.log(key, item);
                         var item_number = key + 1;
                         $.each(item, function(ke, it) {
-                        // console.log(ke, it);
+                            // console.log(ke, it);
                             console.log($('.item' + item_number).find('#' + ke));
                             var element = $('.item' + item_number).find('#' + ke).closest('td');
-                            $(element).append('<span class="error" style="color:red;font-size:12px;text-align:center;display:block">'+it+'</span>')
+                            $(element).append('<span class="error" style="color:red;font-size:12px;text-align:center;display:block">' + it + '</span>')
                         })
                     })
 
@@ -170,7 +193,6 @@
 
             })
         })
-
 
 
 
