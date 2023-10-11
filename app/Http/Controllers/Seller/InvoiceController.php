@@ -109,7 +109,7 @@ class InvoiceController extends Controller
             } else if ($request->type_of_invoice == 2) {  // Tax invoice
 
                 $validator3 = Validator::make(request()->only('buyer'), [
-                    'buyer' => 'required|exists:users,id',
+                    'buyer' => 'required|exists:seller_buyers_details,id',
                 ]);
                 if ($validator3->fails()) {
                     return response()->json(['message' => $validator3->errors()->all()], 400);
