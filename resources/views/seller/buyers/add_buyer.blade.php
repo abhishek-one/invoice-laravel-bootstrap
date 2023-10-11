@@ -77,7 +77,7 @@
                                             @error('company_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
+                                                id="add-update-buyer-form"                    </span>
                                             @enderror
                                         </div>
 
@@ -367,3 +367,4 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/seller/seller_adds_buyer.js')}}"></script>

@@ -54,22 +54,26 @@
                 @if(Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}" style="text-align: center;border-radius: initial;">{{ Session::get('message') }}</p>
                 @endif
-                <div class="card-body">
-                    <div class="p-2 pb-1 p-md-2">{{ __('Please fill details') }}</div>
 
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="p-2 pb-1 p-md-2">{{ __('Please fill details') }}
+                        </div>
+                        <div class="">
+                            @include('seller.buyers.add_buyer')
+                        </div>
+                    </div>
                     <form method="POST" action="{{ route('seller.generate_invoice') }}" id="tax-invoice-form">
                         <input type="hidden" name="type_of_invoice" value="2">
                         @csrf
 
-                        <div class="d-flex justify-content-between align-items-center p-2">
+                        <div class="p-2">
                             <select class="btn btn-primary dropdown-toggle" id="buyer-dropdown" data-bs-toggle="dropdown" name="buyer">
-                                <option class="dropdown-item" value="" disabled selected>Select Buyer</option>
+                                <option class="dropdown-item" value="" disabled selected>Select a buyer</option>
                                 @foreach($buyers as $buyer)
                                 <option class="dropdown-item buyer" value="{{$buyer->id}}">{{$buyer->first_name.''.$buyer->middle_name.' '.$buyer->last_name}}</option>
                                 @endforeach
                             </select>
-                            <div class="">
-                            </div>
                         </div>
 
                         <div class="table-responsive p-2">
@@ -278,4 +282,6 @@
         })
     });
 </script>
+
+
 @endsection
