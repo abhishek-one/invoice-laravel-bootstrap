@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('district_ar')->nullable();
             $table->integer('pincode')->nullable();
-            $table->integer('pincode_ar')->nullable();
             $table->string('city')->nullable();
             $table->string('city_ar')->nullable();
             $table->string('vat_number')->nullable();

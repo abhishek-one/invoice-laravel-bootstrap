@@ -302,19 +302,6 @@
 
                                         <div class="col">
                                             <div class="mb-3">
-                                                <label for="pincode_ar" class="form-label">{{ __('رمز بريدي*') }}</label>
-                                                <input class="form-control" id="pincode_ar" type="text" class="form-control @error('pincode_ar') is-invalid @enderror" name="pincode_ar" value="{{ old('pincode_ar') }}" autocomplete="pincode_ar">
-                                            </div>
-
-                                            @error('pincode_ar')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="mb-3">
                                                 <label for="city_ar" class="form-label">{{ __('مدينة*') }}</label>
                                                 <input class="form-control" id="city_ar" type="text" class="form-control @error('city_ar') is-invalid @enderror" name="city_ar" value="{{ old('city_ar') }}" autocomplete="city_ar">
                                             </div>

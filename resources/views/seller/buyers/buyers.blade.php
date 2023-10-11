@@ -110,7 +110,6 @@
                         $('#additional_number_ar').val(response.additional_number_ar);
                         $('#street_ar').val(response.street_ar);
                         $('#district_ar').val(response.district_ar);
-                        $('#pincode_ar').val(response.pincode_ar);
                         $('#city_ar').val(response.city_ar);
                         $('#vat_number_ar').val(response.vat_number_ar);
                         $('#cr_number_ar').val(response.cr_number_ar);
@@ -212,10 +211,6 @@
                     district_ar: {
                         required: true,
                     },
-                    pincode_ar: {
-                        required: true,
-                        digits: true
-                    },
                     city_ar: {
                         required: true,
                     },
@@ -290,9 +285,6 @@
                     district_ar: {
                         required: "المنطقة مطلوبة",
                     },
-                    pincode_ar: {
-                        required: "الرمز البريدي مطلوب",
-                    },
                     city_ar: {
                         required: "حقل المدينة مطلوب",
                     },
@@ -338,7 +330,6 @@
                             additional_number_ar: $('#additional_number_ar').val(),
                             street_ar: $('#street_ar').val(),
                             district_ar: $('#district_ar').val(),
-                            pincode_ar: $('#pincode_ar').val(),
                             city_ar: $('#city_ar').val(),
                             vat_number_ar: $('#vat_number_ar').val(),
                             cr_number_ar: $('#cr_number_ar').val()

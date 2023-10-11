@@ -82,7 +82,6 @@ class RegisterController extends Controller
                 'district' => ['required', 'string', 'max:255'],
                 'district_ar' => ['required', 'string', 'max:255'],
                 'pincode' => ['required', 'numeric'],
-                'pincode_ar' => ['required', 'numeric'],
                 'city' => ['required', 'string', 'max:255'],
                 'city_ar' => ['required', 'string', 'max:255'],
                 'vat_number' => ['required', 'string', 'max:255'],
@@ -122,9 +121,6 @@ class RegisterController extends Controller
                 'district_ar.required' => 'حقل الحي مطلوب.',
                 'district_ar.string' => 'يجب أن يكون الحي نصًا.',
                 'district_ar.max' => 'يجب ألا يتجاوز الحي 255 حرفًا.',
-
-                'pincode_ar.required' => 'حقل الرمز البريدي مطلوب.',
-                'pincode_ar.numeric' => 'يجب أن يكون الرمز البريدي رقميًا.',
 
                 'city_ar.required' => 'حقل المدينة مطلوب.',
                 'city_ar.string' => 'يجب أن تكون المدينة نصًا.',
@@ -192,7 +188,6 @@ class RegisterController extends Controller
             'additional_number_ar' => $data['additional_number_ar'],
             'street_ar' => $data['street_ar'],
             'district_ar' => $data['district_ar'],
-            'pincode_ar' => $data['pincode_ar'],
             'city_ar' => $data['city_ar'],
             'vat_number_ar' => $data['vat_number_ar'],
             'cr_number_ar' => $data['cr_number_ar'],
