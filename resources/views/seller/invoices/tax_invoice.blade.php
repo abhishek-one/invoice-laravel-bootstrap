@@ -69,11 +69,12 @@
 
                         <div class="p-2">
                             <select class="btn btn-primary dropdown-toggle" id="buyer-dropdown" data-bs-toggle="dropdown" name="buyer">
-                                <option class="dropdown-item" value="" disabled selected>Select a buyer</option>
+                                <option class="dropdown-item" selected disabled>Select a buyer</option>
                                 @foreach($buyers as $buyer)
                                 <option class="dropdown-item buyer" value="{{$buyer->id}}">{{$buyer->first_name.''.$buyer->middle_name.' '.$buyer->last_name}}</option>
                                 @endforeach
                             </select>
+                            <div class="dropdown-error"></div>
                         </div>
 
                         <div class="table-responsive p-2">
@@ -252,33 +253,41 @@
         $('.generate-invoice').on('click', function(e) {
             e.preventDefault()
 
-            var formData = $("#tax-invoice-form").serialize();
+            if ($('#buyer-dropdown').val() != null) {
 
-            $.ajax({
-                url: 'generate-invoice',
-                method: 'post',
-                data: formData,
-                success: function(response) {
-                    console.log(response);
-                    $('.error').hide()
-                    document.getElementById("popup").style.display = "block";
-                    $('#pdfLink').attr('href', response.pdf_url);
-                },
-                error: function(messages) {
-                    var messages = $.parseJSON(messages.responseText);
-                    $('.error').hide()
-                    $.each(messages, function(key, item) {
-                        var item_number = key + 1;
-                        $.each(item, function(ke, it) {
-                            console.log($('.item' + item_number).find('.' + ke));
-                            var element = $('.item' + item_number).find('.' + ke).closest('td');
-                            $(element).append('<span class="error" style="color:red;font-size:12px;text-align:center;display:block">' + it + '</span>')
+                var formData = $("#tax-invoice-form").serialize();
+
+                $.ajax({
+                    url: 'generate-invoice',
+                    method: 'post',
+                    data: formData,
+                    success: function(response) {
+                        console.log(response);
+                        $('.error').hide()
+                        document.getElementById("popup").style.display = "block";
+                        $('#pdfLink').attr('href', response.pdf_url);
+                    },
+                    error: function(messages) {
+                        var messages = $.parseJSON(messages.responseText);
+                        $('.error').hide()
+                        $.each(messages, function(key, item) {
+                            var item_number = key + 1;
+                            $.each(item, function(ke, it) {
+                                console.log($('.item' + item_number).find('.' + ke));
+                                var element = $('.item' + item_number).find('.' + ke).closest('td');
+                                $(element).append('<span class="error" style="color:red;font-size:12px;text-align:center;display:block">' + it + '</span>')
+                            })
                         })
-                    })
 
-                }
+                    }
 
-            })
+                })
+
+            } else {
+
+                $('.dropdown-error').html('<span style="color:red;font-size:12px;text-align:left;padding-left:0.3%;" class="error">Please a select buyer</span>');
+            }
+
         })
     });
 </script>
