@@ -16,12 +16,12 @@ Route::middleware(['auth'])->group(function () {
 
         //  Menu
         Route::redirect('', 'tax-invoice');
-        Route::view('simplified-invoice', 'seller.invoices.simplified_invoice')->name('seller.view.simplified-invoice');
-        Route::view('invoices', 'seller.invoices.invoices')->name('seller.view.invoices');
         
-        Route::get('tax-invoice', [SellerInvoiceController::class, 'view_tax_invoice'])->name('seller.view.tax-invoice');
-
         //  Invoices
+        
+        Route::get('invoices', [SellerInvoiceController::class, 'view_invoices'])->name('seller.view.invoices');
+        Route::view('simplified-invoice', 'seller.invoices.simplified_invoice')->name('seller.view.simplified-invoice');
+        Route::get('tax-invoice', [SellerInvoiceController::class, 'view_tax_invoice'])->name('seller.view.tax-invoice');
         Route::post('generate-invoice', [SellerInvoiceController::class, 'generate_invoice'])->name('seller.generate_invoice');
 
         //  Buyers

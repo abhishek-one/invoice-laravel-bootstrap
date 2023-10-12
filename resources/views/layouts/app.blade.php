@@ -25,14 +25,14 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-         $.ajaxSetup({
-            headers:
-            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        });
-    })
-
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        })
     </script>
 
 
@@ -71,7 +71,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('seller.view.invoices')}}">{{ __('View invoices') }}</a>
+                            <a class="nav-link" href="{{ route('seller.view.invoices') }}">{{ __('View invoices') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('seller.view.buyers') }}">{{ __('Buyers') }}</a>

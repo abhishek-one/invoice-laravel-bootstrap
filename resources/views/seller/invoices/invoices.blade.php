@@ -9,9 +9,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Invoice No</th>
+                        <th scope="col">Invoice Number</th>
+                        <th scope="col">Invoice Date</th>
                         <th scope="col">Buyer's Name</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Tax Amount</th>
@@ -20,32 +19,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(count($invoices) == 0)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button class="btn btn-primary">View</button>
+                        <td colspan="8" class="text-center">
+                            No Invoices found.
                         </td>
                     </tr>
+                    @else
+                    @foreach($invoices as $invoice)
                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
+                        <td>1</td>
+                        <td>{{$invoice->invoice_number}}</td>
+                        <td>{{date('d-m-Y', strtotime($invoice->created_at))}}</td>
+                        <td>{{$invoice->buyer_name}}</td>
+                        <td>{{$invoice->items_total}}</td>
+                        <td>{{$invoice->total_vat}}</td>
+                        <td>{{$invoice->total_amount}}</td>
                         <td>
-                            <button class="btn btn-primary">View</button>
+                            <a class="btn btn-primary" href="{{asset('invoices_pdfs/'.$invoice->invoice_number.'.pdf')}}">View</a>
                         </td>
                     </tr>
+                    @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

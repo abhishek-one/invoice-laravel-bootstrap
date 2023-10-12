@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
 
             $table->id();
-            $table->string('user_id');
+            $table->string('seller_id');
             $table->string('invoice_number')->nullable();
             $table->integer('type_of_invoice')->comment('1-simple, 2-tax');
 

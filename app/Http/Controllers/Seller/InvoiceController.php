@@ -24,6 +24,11 @@ use Illuminate\Support\Facades\Validator;
 
 class InvoiceController extends Controller
 {
+    public function view_invoices()
+    {
+        $invoices = Invoice::where('seller_id', Auth::id())->get();
+        return view('seller.invoices.invoices',compact('invoices'));
+    }
 
     public function view_tax_invoice()
     {
@@ -71,7 +76,7 @@ class InvoiceController extends Controller
                 return response()->json($final, 400);
             }
             $invoice = new Invoice();
-            $invoice->user_id = Auth::user()->id;
+            $invoice->seller_id = Auth::user()->id;
             $invoice->type_of_invoice = $request->type_of_invoice;
 
             $seller = SellerDetail::where('id', Auth::user()->id)->first();
@@ -183,7 +188,7 @@ class InvoiceController extends Controller
 
             $qr = $this->generate_qr($data);
 
-            $file_path =  'invoices' . DIRECTORY_SEPARATOR;
+            $file_path =  'invoices_pdfs' . DIRECTORY_SEPARATOR;
             $file_name =  $invoice_number . ".pdf";
 
             Pdf::loadView('seller.invoices.print_invoice', compact('qr', 'data'))
