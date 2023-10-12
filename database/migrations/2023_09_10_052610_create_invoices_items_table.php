@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('invoice_id');
             $table->string('description');
-            $table->decimal('unit_price', 15, 3);
-            $table->decimal('quantity', 15, 3);
-            $table->decimal('taxable_amount', 15, 3);
-            $table->decimal('tax_rate', 15, 3);
-            $table->decimal('tax_amount', 15, 3);
-            $table->decimal('subtotal', 15, 3)->comment('Including VAT');
+            $table->decimal('unit_price', 15, 2);
+            $table->decimal('quantity', 15, 2);
+            $table->decimal('taxable_amount', 15, 2);
+            $table->decimal('tax_rate', 15, 2);
+            $table->decimal('tax_amount', 15, 2);
+            $table->decimal('subtotal', 15, 2)->comment('Including VAT');
             $table->timestamps();
         });
     }
