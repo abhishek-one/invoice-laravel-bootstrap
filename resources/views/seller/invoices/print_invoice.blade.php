@@ -16,7 +16,7 @@
 
     /* Style the table header text */
     th {
-        background-color: #f2f2f2;
+        background-color: #3AAFA9;
         text-align: left;
         border: 1px solid black !important;
         padding: 5px;
@@ -33,9 +33,14 @@
         padding: 5px;
     }
 
-    * {
+    .arabic {
+        /* direction: rtl; */
         font-family: DejaVu Sans, sans-serif;
-        font-size: 12px;
+        /* font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif; */
+        /* font-size: 14.3px; */
+    }
+    *{
+        font-size: 8px;
     }
 </style>
 
@@ -67,68 +72,68 @@
             <tr>
                 <th>Seller details</th>
                 <th></th>
-                <th></th>
-                <th>تفاصيل البائع</th>
+                <th class="arabic"></th>
+                <th class="arabic">تفاصيل البائع</th>
             </tr>
             <tr>
                 <td>Name</td>
                 <td>{{$data[0]['seller_name']}}</td>
-                <td>{{$data[0]['seller_name_ar']}}</td>
-                <td>اسم</td>
+                <td class="arabic">{{$data[0]['seller_name_ar']}}</td>
+                <td class="arabic">اسم</td>
             </tr>
             <tr>
                 <td>Building No.</td>
                 <td>{{$data[0]['seller_building_number']}}</td>
-                <td>{{$data[0]['seller_building_number_ar']}}</td>
-                <td>رقم المبنى</td>
+                <td class="arabic">{{$data[0]['seller_building_number_ar']}}</td>
+                <td class="arabic">رقم المبنى</td>
             </tr>
             <tr>
                 <td>Street Name</td>
                 <td>{{$data[0]['seller_street']}}</td>
-                <td>{{$data[0]['seller_street_ar']}}</td>
-                <td>اسم الشارع</td>
+                <td class="arabic">{{$data[0]['seller_street_ar']}}</td>
+                <td class="arabic">اسم الشارع</td>
             </tr>
             <tr>
                 <td>District</td>
                 <td>{{$data[0]['seller_district']}}</td>
-                <td>{{$data[0]['seller_district_ar']}}</td>
-                <td>يصرف</td>
+                <td class="arabic">{{$data[0]['seller_district_ar']}}</td>
+                <td class="arabic">يصرف</td>
             </tr>
             <tr>
                 <td>City</td>
                 <td>{{$data[0]['seller_city']}}</td>
-                <td>{{$data[0]['seller_city_ar']}}</td>
-                <td>مدينة</td>
+                <td class="arabic">{{$data[0]['seller_city_ar']}}</td>
+                <td class="arabic">مدينة</td>
             </tr>
             <tr>
                 <td>Country</td>
                 <td>{{$data[0]['seller_country']}}</td>
-                <td>{{$data[0]['seller_country_ar']}}</td>
-                <td>دولة</td>
+                <td class="arabic">{{$data[0]['seller_country_ar']}}</td>
+                <td class="arabic">دولة</td>
             </tr>
             <tr>
                 <td>Postal Code</td>
                 <td>{{$data[0]['seller_pincode']}}</td>
-                <td>{{$data[0]['seller_pincode']}}</td>
-                <td>رمز بريدي</td>
+                <td class="arabic">{{$data[0]['seller_pincode']}}</td>
+                <td class="arabic">رمز بريدي</td>
             </tr>
             <tr>
                 <td>Additional Number</td>
                 <td>{{$data[0]['seller_additional_number']}}</td>
-                <td>{{$data[0]['seller_additional_number_ar']}}</td>
-                <td>رقم إضافي</td>
+                <td class="arabic">{{$data[0]['seller_additional_number_ar']}}</td>
+                <td class="arabic">رقم إضافي</td>
             </tr>
             <tr>
                 <td>VAT Number</td>
                 <td>{{$data[0]['seller_vat_number']}}</td>
-                <td>{{$data[0]['seller_vat_number_ar']}}</td>
-                <td>ظريبه الشراء</td>
+                <td class="arabic">{{$data[0]['seller_vat_number_ar']}}</td>
+                <td class="arabic">ظريبه الشراء</td>
             </tr>
             <tr>
                 <td>CR Number</td>
                 <td>{{$data[0]['seller_cr_number']}}</td>
-                <td>{{$data[0]['seller_cr_number_ar']}}</td>
-                <td>رقم السجل التجاري</td>
+                <td class="arabic">{{$data[0]['seller_cr_number_ar']}}</td>
+                <td class="arabic">رقم السجل التجاري</td>
             </tr>
         </table>
     </div>
@@ -139,68 +144,68 @@
             <tr>
                 <th>Buyer details</th>
                 <th></th>
-                <th></th>
-                <th>تفاصيل المشتري</th>
+                <th class="arabic"></th>
+                <th class="arabic">تفاصيل المشتري</th>
             </tr>
             <tr>
                 <td>Name</td>
                 <td>{{$data[0]['buyer_name']}}</td>
-                <td>{{$data[0]['buyer_name_ar']}}</td>
-                <td>اسم</td>
+                <td class="arabic">{{$data[0]['buyer_name_ar']}}</td>
+                <td class="arabic">اسم</td>
             </tr>
             <tr>
                 <td>Building No.</td>
                 <td>{{$data[0]['buyer_building_number']}}</td>
-                <td>{{$data[0]['buyer_building_number_ar']}}</td>
-                <td>رقم المبنى</td>
+                <td class="arabic">{{$data[0]['buyer_building_number_ar']}}</td>
+                <td class="arabic">رقم المبنى</td>
             </tr>
             <tr>
                 <td>Street Name</td>
                 <td>{{$data[0]['buyer_street']}}</td>
-                <td>{{$data[0]['buyer_street_ar']}}</td>
-                <td>اسم الشارع</td>
+                <td class="arabic">{{$data[0]['buyer_street_ar']}}</td>
+                <td class="arabic">اسم الشارع</td>
             </tr>
             <tr>
                 <td>District</td>
                 <td>{{$data[0]['buyer_district']}}</td>
-                <td>{{$data[0]['buyer_district_ar']}}</td>
-                <td>يصرف</td>
+                <td class="arabic">{{$data[0]['buyer_district_ar']}}</td>
+                <td class="arabic">يصرف</td>
             </tr>
             <tr>
                 <td>City</td>
                 <td>{{$data[0]['buyer_city']}}</td>
-                <td>{{$data[0]['buyer_city_ar']}}</td>
-                <td>مدينة</td>
+                <td class="arabic">{{$data[0]['buyer_city_ar']}}</td>
+                <td class="arabic">مدينة</td>
             </tr>
             <tr>
                 <td>Country</td>
                 <td>{{$data[0]['buyer_country']}}</td>
-                <td>{{$data[0]['buyer_country_ar']}}</td>
-                <td>دولة</td>
+                <td class="arabic">{{$data[0]['buyer_country_ar']}}</td>
+                <td class="arabic">دولة</td>
             </tr>
             <tr>
                 <td>Postal Code</td>
                 <td>{{$data[0]['buyer_pincode']}}</td>
-                <td>{{$data[0]['buyer_pincode']}}</td>
-                <td>رمز بريدي</td>
+                <td class="arabic">{{$data[0]['buyer_pincode']}}</td>
+                <td class="arabic">رمز بريدي</td>
             </tr>
             <tr>
                 <td>Additional Number</td>
                 <td>{{$data[0]['buyer_additional_number']}}</td>
-                <td>{{$data[0]['buyer_additional_number_ar']}}</td>
-                <td>رقم إضافي</td>
+                <td class="arabic">{{$data[0]['buyer_additional_number_ar']}}</td>
+                <td class="arabic">رقم إضافي</td>
             </tr>
             <tr>
                 <td>VAT Number</td>
                 <td>{{$data[0]['buyer_vat_number']}}</td>
-                <td>{{$data[0]['buyer_vat_number_ar']}}</td>
-                <td>ظريبه الشراء</td>
+                <td class="arabic">{{$data[0]['buyer_vat_number_ar']}}</td>
+                <td class="arabic">ظريبه الشراء</td>
             </tr>
             <tr>
                 <td>CR Number</td>
                 <td>{{$data[0]['buyer_cr_number']}}</td>
-                <td>{{$data[0]['buyer_cr_number_ar']}}</td>
-                <td>رقم السجل التجاري</td>
+                <td class="arabic">{{$data[0]['buyer_cr_number_ar']}}</td>
+                <td class="arabic">رقم السجل التجاري</td>
             </tr>
         </table>
         @endif
@@ -211,13 +216,27 @@
 <div class="items" style="width: 100%">
     <table>
         <tr>
-            <th>Nature of goods or services طبيعة السلع أو الخدمات</th>
-            <th>Unit Price سعر الوحدة</th>
-            <th>Quantity كمية</th>
-            <th>Taxable Amount المبلغ الخاضع للضريبة</th>
-            <th>Tax Rate معدل الضريبة</th>
-            <th>Tax Amount قيمة الضريبة</th>
-            <th>Item Subtotal(Including VAT) المجموع الفرعي للصنف (شامل ضريبة القيمة المضافة)</th>
+            <th>Nature of goods or services
+                <span class="arabic">طبيعة السلع أو الخدمات</span>
+            </th>
+            <th>Unit Price
+                <span class="arabic"> سعر الوحدة</span>
+            </th>
+            <th>Quantity
+                <span class="arabic"> كمية</span>
+            </th>
+            <th>Taxable Amount
+                <span class="arabic"> المبلغ الخاضع للضريبة</span>
+            </th>
+            <th>Tax Rate
+                <span class="arabic">معدل الضريبة</span>
+            </th>
+            <th>Tax Amount
+                <span class="arabic">قيمة الضريبة</span>
+            </th>
+            <th>Item Subtotal(Including VAT)
+                <span class="arabic">المجموع الفرعي للصنف (شامل ضريبة القيمة المضافة)</span>
+            </th>
         </tr>
         @foreach($data as $items)
         <tr>
@@ -237,17 +256,17 @@
     <table>
         <tr>
             <th>Total (Excluding VAT)</th>
-            <th>الإجمالي (باستثناء ضريبة القيمة المضافة)</th>
+            <th class="arabic">الإجمالي (باستثناء ضريبة القيمة المضافة)</th>
             <td>{{$data[0]['items_total']}}</td>
         </tr>
         <tr>
             <th>Total VAT</th>
-            <th>إجمالي ضريبة القيمة المضافة</th>
+            <th class="arabic">إجمالي ضريبة القيمة المضافة</th>
             <td>{{$data[0]['total_vat']}}</td>
         </tr>
         <tr>
             <th>Total Amount</th>
-            <th>المبلغ الإجمالي</th>
+            <th class="arabic">المبلغ الإجمالي</th>
             <td>{{$data[0]['total_amount']}}</td>
         </tr>
     </table>
