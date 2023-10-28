@@ -36,7 +36,7 @@
                         <td>{{$invoice->total_vat}}</td>
                         <td>{{$invoice->total_amount}}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{asset('invoices_pdfs/'.$invoice->invoice_number.'.pdf')}}">View</a>
+                            <a class="btn btn-primary" href="{{asset('invoices_pdfs/'.$invoice->invoice_number.'.pdf')}}" target="_blank">View</a>
                         </td>
                     </tr>
                     @endforeach

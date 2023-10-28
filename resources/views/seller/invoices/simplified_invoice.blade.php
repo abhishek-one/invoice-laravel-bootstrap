@@ -135,7 +135,7 @@
         <div class="tick-animation">✔ Invoice created Successfully</div>
         <div class="popup-buttons">
             <button id="viewInvoice" class="btn btn-success">View Invoice</button>
-            <a id="pdfLink" href="" style="display: none;"></a>
+            <a id="pdfLink" href="" style="display: none;" target="_blank"></a>
             <button id="createNew" class="btn btn-primary">Create New Invoice</button>
         </div>
     </div>
