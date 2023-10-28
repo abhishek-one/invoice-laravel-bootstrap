@@ -17,7 +17,7 @@ class ProfileController extends Controller
             [
                 'account_name' => ['required', 'string', 'max:255'],
                 'bank_name' => ['required', 'string', 'max:255'],
-                'account_number' => ['required', 'max:255','numeric'],
+                'account_number' => ['required','numeric'],
                 'iban_number' => ['required', 'max:255']
             ],
             [
