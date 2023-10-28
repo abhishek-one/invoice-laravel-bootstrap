@@ -17,7 +17,7 @@ class ProfileController extends Controller
             [
                 'account_name' => ['required', 'string', 'max:255'],
                 'bank_name' => ['required', 'string', 'max:255'],
-                'account_number' => ['required', 'max:255'],
+                'account_number' => ['required', 'max:255','numeric'],
                 'iban_number' => ['required', 'max:255']
             ],
             [
@@ -37,7 +37,8 @@ class ProfileController extends Controller
                 'account_number' => $request['account_number'],
                 'iban_number' => $request['iban_number'],
             ]);
-            return redirect()->back()->with('message', 'Details updated');
+            return redirect('/');
+            // redirect()->back()->with('message', 'Details updated');
         }
     }
 
@@ -85,12 +86,12 @@ class ProfileController extends Controller
                 'street_ar' => ['required', 'string', 'max:255'],
                 'district' => ['string', 'max:255'],
                 'district_ar' => ['string', 'max:255'],
-                'pincode' => ['required', 'numeric'],
+                'pincode' => ['required', 'numeric','min:6','max:6'],
                 'city' => ['required', 'string', 'max:255'],
                 'city_ar' => ['required', 'string', 'max:255'],
-                'vat_number' => ['required', 'string', 'max:255'],
+                'vat_number' => ['required', 'string', 'max:15','min:15'],
                 'vat_number_ar' => ['required', 'string', 'max:255'],
-                'cr_number' => ['required', 'string', 'max:255'],
+                'cr_number' => ['required', 'string','max:10','min:10'],
                 'cr_number_ar' => ['required', 'string', 'max:255'],
             ],
             [
@@ -130,11 +131,11 @@ class ProfileController extends Controller
 
                 'vat_number_ar.required' => 'هذه الخانة مطلوبه.',
                 'vat_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
-                'vat_number_ar.max' => 'يجب ألا يتجاوز الرقم الضريبي 255 حرفًا.',
+                'vat_number_ar.max' => 'يجب ألا يتجاوز الرقم الضريبي 15 حرفًا.',
 
                 'cr_number_ar.required' => 'هذه الخانة مطلوبه.',
                 'cr_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
-                'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 255 حرفًا.',
+                'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 10 حرفًا.',
             ]
         );
 

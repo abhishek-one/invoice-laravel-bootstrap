@@ -46,12 +46,12 @@ class BuyerController extends Controller
                 'street_ar' => ['required', 'string', 'max:255'],
                 'district' => ['string', 'max:255'],
                 'district_ar' => ['string', 'max:255'],
-                'pincode' => ['required', 'numeric'],
+                'pincode' => ['required', 'numeric','min:6','max:6'],
                 'city' => ['required', 'string', 'max:255'],
                 'city_ar' => ['required', 'string', 'max:255'],
-                'vat_number' => ['required', 'string', 'max:255'],
+                'vat_number' => ['required', 'string', 'max:15','min:15'],
                 'vat_number_ar' => ['required', 'string', 'max:255'],
-                'cr_number' => ['required', 'string', 'max:255'],
+                'cr_number' => ['required', 'string', 'max:10','min:10'],
                 'cr_number_ar' => ['required', 'string', 'max:255'],
             ],
             [
@@ -91,11 +91,11 @@ class BuyerController extends Controller
 
                 'vat_number_ar.required' => 'حقل الرقم الضريبي مطلوب.',
                 'vat_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
-                'vat_number_ar.max' => 'يجب ألا يتجاوز الرقم الضريبي 255 حرفًا.',
+                'vat_number_ar.max' => 'يجب ألا يتجاوز الرقم الضريبي 15 حرفًا.',
 
                 'cr_number_ar.required' => 'هذه الخانة مطلوبه.',
                 'cr_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
-                'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 255 حرفًا.',
+                'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 10 حرفًا.',
             ]
         );
 

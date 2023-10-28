@@ -463,15 +463,22 @@
             pincode: {
                 required: true,
                 digits: true,
+                minlength: 6,
+                maxlength: 6,
             },
             city: {
                 required: true,
             },
             vat_number: {
                 required: true,
+                minlength:15,
+                maxlength:15,
             },
             cr_number: {
                 required: true,
+                digits:true,
+                minlength:10,
+                maxlength:10,
             },
             first_name_ar: {
                 required: true,

@@ -77,6 +77,15 @@ $(document).ready(function () {
         "يجب أن تحتوي الحقل على ما لا يقل عن حرفين عربيين"
     );
 
+    $.validator.addMethod("endsWith00003", function(value, element) {
+        return value.endsWith("00003");
+      }, "The string must end with '00003'.");
+
+      $.validator.addMethod("exactLength", function(value, element, params) {
+        return value.length === params;
+      }, jQuery.validator.format("The string must be {0} characters long."));
+
+
     $("#add-update-buyer-form").validate({
         rules: {
             email: {
@@ -114,15 +123,23 @@ $(document).ready(function () {
             pincode: {
                 required: true,
                 digits: true,
+                minlength:6,
+                maxlength:6,
             },
             city: {
                 required: true,
             },
             vat_number: {
                 required: true,
+                endsWith00003: true,
+                exactLength: 15
             },
             cr_number: {
                 required: true,
+                digits:true,
+                minlength:10,
+                maxlength:10,
+
             },
             first_name_ar: {
                 required: true,
@@ -160,6 +177,9 @@ $(document).ready(function () {
             },
             cr_number_ar: {
                 required: true,
+                digits:true,
+                minlength:10,
+                maxlength:10,
             },
         },
         messages: {
@@ -201,6 +221,8 @@ $(document).ready(function () {
             },
             vat_number: {
                 required: "Please enter VAT number",
+                endsWith00003: "VAT number must end with 00003.",
+                exactLength: "The string must be 15 characters long."
             },
             cr_number: {
                 required: "Please enter CR number",

@@ -35,9 +35,9 @@
             <table class="table table-bordered table-hover tableTheme1">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Buyer's Full name</th>
-                        <th scope="col">Buyer's VAT </th>
+                        <th scope="col">Company Code</th>
+                        <th scope="col">Company Full name</th>
+                        <th scope="col">Company VAT </th>
                         <th scope="col">View Details</th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@
                     @else
                     @foreach($data as $buyer_data)
                     <tr>
-                        <td scope="row">{{$loop->iteration}}</td>
+                        <td scope="row">BUYER-0{{$buyer_data->id}}</td>
                         <td>{{$buyer_data->first_name.' '.$buyer_data->middle_name.' '.$buyer_data->last_name}}</td>
                         <td>{{$buyer_data->vat_number}}</td>
                         <td>

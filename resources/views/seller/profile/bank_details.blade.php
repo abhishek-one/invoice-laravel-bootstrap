@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="account_number" class="col-md-4 col-form-label text-md-end">{{ __('Account name*') }}</label>
+                            <label for="account_number" class="col-md-4 col-form-label text-md-end">{{ __('Account number*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="account_number" type="text" class="form-control @error('account_number') is-invalid @enderror" name="account_number" value="{{ old('account_number',isset($data['account_number']) ? $data['account_number'] :null) }}" autocomplete="account_number" autofocus>
