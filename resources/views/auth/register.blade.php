@@ -159,7 +159,7 @@
 
                             <div class="col">
                                 <div class="my-3">
-                                    <label for="district" class="form-label">{{ __('District*') }}</label>
+                                    <label for="district" class="form-label">{{ __('District') }}</label>
                                     <input id="district" type="text" class="form-control @error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" autocomplete="district">
                                 </div>
 
@@ -326,7 +326,7 @@
 
                             <div class="col">
                                 <div class="my-3">
-                                    <label for="district_ar" class="form-label">{{ __('يصرف*')}}</label>
+                                    <label for="district_ar" class="form-label">{{ __('حي*')}}</label>
                                     <input id="district_ar" type="text" class="form-control @error('district_ar') is-invalid @enderror" name="district_ar" value="{{ old('district_ar') }}" autocomplete="district_ar">
                                 </div>
 
@@ -339,7 +339,7 @@
 
                             <div class="col">
                                 <div class="my-3">
-                                    <label for="city_ar" class="form-label">{{ __('مدينة*') }}</label>
+                                    <label for="city_ar" class="form-label">{{ __('مدينة') }}</label>
                                     <input id="city_ar" type="text" class="form-control @error('city_ar') is-invalid @enderror" name="city_ar" value="{{ old('city_ar') }}" autocomplete="city_ar">
                                 </div>
 
@@ -352,7 +352,7 @@
 
                             <div class="col">
                                 <div class="my-3">
-                                    <label for="vat_number_ar" class="form-label">{{ __('ضريبة القيمة المضافة*') }}</label>
+                                    <label for="vat_number_ar" class="form-label">{{ __('رقم ضريبة القيمة المضافة*') }}</label>
                                     <input id="vat_number_ar" type="text" class="form-control @error('vat_number_ar') is-invalid @enderror" name="vat_number_ar" value="{{ old('vat_number_ar') }}" autocomplete="vat_number_ar">
                                 </div>
 
@@ -365,7 +365,7 @@
 
                             <div class="col">
                                 <div class="my-3">
-                                    <label for="cr_number_ar" class="form-label">{{ __('سجل تجاري. رقم*') }}</label>
+                                    <label for="cr_number_ar" class="form-label">{{ __('رقم السجل التجاري*') }}</label>
                                     <input id="cr_number_ar" type="text" class="form-control @error('cr_number_ar') is-invalid @enderror" name="cr_number_ar" value="{{ old('cr_number_ar') }}" autocomplete="cr_number_ar">
                                 </div>
 
@@ -457,9 +457,9 @@
             street: {
                 required: true,
             },
-            district: {
-                required: true,
-            },
+            // district: {
+            //     required: true,
+            // },
             pincode: {
                 required: true,
                 digits: true,
@@ -498,9 +498,9 @@
             street_ar: {
                 required: true,
             },
-            district_ar: {
-                required: true,
-            },
+            // district_ar: {
+            //     required: true,
+            // },
             city_ar: {
                 required: true,
             },
@@ -549,9 +549,9 @@
             street: {
                 required: "Please enter your Street number",
             },
-            district: {
-                required: "Please enter your District name",
-            },
+            // district: {
+            //     required: "Please enter your District name",
+            // },
             pincode: {
                 required: "Please enter your Postal code",
                 digits: "Please enter numbers only"
@@ -567,31 +567,31 @@
             },
 
             first_name_ar: {
-                required: "الإسم الأول مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             last_name_ar: {
-                required: "إسم العائلة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             company_name_ar: {
-                required: "اسم الشركة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             building_number_ar: {
-                required: "رقم المبنى مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             street_ar: {
-                required: "رقم المبنى مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
-            district_ar: {
-                required: "المنطقة مطلوبة",
-            },
+            // district_ar: {
+            //     required: "المنطقة مطلوبة",
+            // },
             city_ar: {
-                required: "حقل المدينة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             vat_number_ar: {
-                required: "مطلوب ضريبة القيمة المضافة",
+                required: "هذه الخانة مطلوبه",
             },
             cr_number_ar: {
-                required: "مطلوب رقم السجل التجاري",
+                required: "هذه الخانة مطلوبه",
             },
         },
         highlight: function(element, errorClass) {

@@ -93,12 +93,14 @@
                 <td class="arabic">{{$data[0]['seller_street_ar']}}</td>
                 <td class="arabic">اسم الشارع</td>
             </tr>
+            @if(isset($data[0]['seller_district']) || $data[0]['seller_district_ar'])
             <tr>
                 <td>District</td>
                 <td>{{$data[0]['seller_district']}}</td>
                 <td class="arabic">{{$data[0]['seller_district_ar']}}</td>
                 <td class="arabic">يصرف</td>
             </tr>
+            @endif
             <tr>
                 <td>City</td>
                 <td>{{$data[0]['seller_city']}}</td>
@@ -165,12 +167,14 @@
                 <td class="arabic">{{$data[0]['buyer_street_ar']}}</td>
                 <td class="arabic">اسم الشارع</td>
             </tr>
+            @if(isset($data[0]['seller_district']) || $data[0]['seller_district_ar'])
             <tr>
                 <td>District</td>
                 <td>{{$data[0]['buyer_district']}}</td>
                 <td class="arabic">{{$data[0]['buyer_district_ar']}}</td>
                 <td class="arabic">يصرف</td>
             </tr>
+            @endif
             <tr>
                 <td>City</td>
                 <td>{{$data[0]['buyer_city']}}</td>

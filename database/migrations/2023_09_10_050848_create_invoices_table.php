@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('seller_name');
             $table->string('seller_building_number');
             $table->string('seller_street');
-            $table->string('seller_district');
+            $table->string('seller_district')->nullable();
             $table->string('seller_city');
             $table->string('seller_pincode');
             $table->string('seller_additional_number');
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('seller_name_ar');
             $table->string('seller_building_number_ar');
             $table->string('seller_street_ar');
-            $table->string('seller_district_ar');
+            $table->string('seller_district_ar')->nullable();
             $table->string('seller_city_ar');
             $table->string('seller_additional_number_ar');
             $table->string('seller_vat_number_ar');

@@ -83,8 +83,8 @@ class ProfileController extends Controller
                 'additional_number_ar' => ['nullable', 'string', 'max:255'],
                 'street' => ['required', 'string', 'max:255'],
                 'street_ar' => ['required', 'string', 'max:255'],
-                'district' => ['required', 'string', 'max:255'],
-                'district_ar' => ['required', 'string', 'max:255'],
+                'district' => ['string', 'max:255'],
+                'district_ar' => ['string', 'max:255'],
                 'pincode' => ['required', 'numeric'],
                 'city' => ['required', 'string', 'max:255'],
                 'city_ar' => ['required', 'string', 'max:255'],
@@ -120,20 +120,20 @@ class ProfileController extends Controller
                 'street_ar.string' => 'يجب أن يكون الشارع نصًا.',
                 'street_ar.max' => 'يجب ألا يتجاوز الشارع 255 حرفًا.',
 
-                'district_ar.required' => 'حقل الحي مطلوب.',
-                'district_ar.string' => 'يجب أن يكون الحي نصًا.',
-                'district_ar.max' => 'يجب ألا يتجاوز الحي 255 حرفًا.',
+                // 'district_ar.required' => 'حقل الحي مطلوب.',
+                'district_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط',
+                'district_ar.max' => 'الحد الأقصى المسموح به هو 255 حرفًا.',
 
-                'city_ar.required' => 'حقل المدينة مطلوب.',
-                'city_ar.string' => 'يجب أن تكون المدينة نصًا.',
+                'city_ar.required' => 'هذه الخانة مطلوبه',
+                'city_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط',
                 'city_ar.max' => 'يجب ألا تتجاوز المدينة 255 حرفًا.',
 
-                'vat_number_ar.required' => 'حقل الرقم الضريبي مطلوب.',
-                'vat_number_ar.string' => 'يجب أن يكون الرقم الضريبي نصًا.',
+                'vat_number_ar.required' => 'هذه الخانة مطلوبه.',
+                'vat_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
                 'vat_number_ar.max' => 'يجب ألا يتجاوز الرقم الضريبي 255 حرفًا.',
 
-                'cr_number_ar.required' => 'حقل الرقم التجاري مطلوب.',
-                'cr_number_ar.string' => 'يجب أن يكون الرقم التجاري نصًا.',
+                'cr_number_ar.required' => 'هذه الخانة مطلوبه.',
+                'cr_number_ar.string' => 'الرجاء إدخال الحروف الهجائية فقط.',
                 'cr_number_ar.max' => 'يجب ألا يتجاوز الرقم التجاري 255 حرفًا.',
             ]
         );

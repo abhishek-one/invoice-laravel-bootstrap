@@ -115,7 +115,7 @@
 
                                 <div class="col">
                                     <div class="my-3">
-                                        <label for="district" class="form-label">{{ __('District*') }}</label>
+                                        <label for="district" class="form-label">{{ __('District') }}</label>
                                         <input id="district" type="text" class="form-control @error('district') is-invalid @enderror" name="district" value="{{ old('district',$data['district'] ?? data['district']) }}" autocomplete="district">
                                     </div>
 
@@ -282,7 +282,7 @@
 
                                 <div class="col">
                                     <div class="my-3">
-                                        <label for="district_ar" class="form-label">{{ __('يصرف*')}}</label>
+                                        <label for="district_ar" class="form-label">{{ __('حي*')}}</label>
                                         <input id="district_ar" type="text" class="form-control @error('district_ar') is-invalid @enderror" name="district_ar" value="{{ old('district_ar',$data['district_ar'] ?? data['district_ar']) }}" autocomplete="district_ar">
                                     </div>
 
@@ -295,7 +295,7 @@
 
                                 <div class="col">
                                     <div class="my-3">
-                                        <label for="city_ar" class="form-label">{{ __('مدينة*') }}</label>
+                                        <label for="city_ar" class="form-label">{{ __('مدينة') }}</label>
                                         <input id="city_ar" type="text" class="form-control @error('city_ar') is-invalid @enderror" name="city_ar" value="{{ old('city_ar',$data['city_ar'] ?? data['city_ar']) }}" autocomplete="city_ar">
                                     </div>
 
@@ -308,7 +308,7 @@
 
                                 <div class="col">
                                     <div class="my-3">
-                                        <label for="vat_number_ar" class="form-label">{{ __('ضريبة القيمة المضافة*') }}</label>
+                                        <label for="vat_number_ar" class="form-label">{{ __('رقم ضريبة القيمة المضافة*') }}</label>
                                         <input id="vat_number_ar" type="text" class="form-control @error('vat_number_ar') is-invalid @enderror" name="vat_number_ar" value="{{ old('vat_number_ar',$data['vat_number_ar'] ?? data['vat_number_ar']) }}" autocomplete="vat_number_ar">
                                     </div>
 
@@ -321,7 +321,7 @@
 
                                 <div class="col">
                                     <div class="my-3">
-                                        <label for="cr_number_ar" class="form-label">{{ __('سجل تجاري. رقم*') }}</label>
+                                        <label for="cr_number_ar" class="form-label">{{ __('رقم السجل التجاري*') }}</label>
                                         <input id="cr_number_ar" type="text" class="form-control @error('cr_number_ar') is-invalid @enderror" name="cr_number_ar" value="{{ old('cr_number_ar',$data['cr_number_ar'] ?? data['cr_number_ar']) }}" autocomplete="cr_number_ar">
                                     </div>
 

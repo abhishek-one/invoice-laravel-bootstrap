@@ -207,31 +207,31 @@ $(document).ready(function () {
             },
 
             first_name_ar: {
-                required: "الإسم الأول مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             last_name_ar: {
-                required: "إسم العائلة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             company_name_ar: {
-                required: "اسم الشركة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             building_number_ar: {
-                required: "رقم المبنى مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             street_ar: {
-                required: "رقم المبنى مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             district_ar: {
-                required: "المنطقة مطلوبة",
+                required: "هذه الخانة مطلوبه",
             },
             city_ar: {
-                required: "حقل المدينة مطلوب",
+                required: "هذه الخانة مطلوبه",
             },
             vat_number_ar: {
-                required: "مطلوب ضريبة القيمة المضافة",
+                required: "هذه الخانة مطلوبه",
             },
             cr_number_ar: {
-                required: "مطلوب رقم السجل التجاري",
+                required: "هذه الخانة مطلوبه",
             },
         },
         highlight: function (element, errorClass) {
