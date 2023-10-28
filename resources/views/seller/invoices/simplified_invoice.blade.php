@@ -158,6 +158,19 @@
             document.getElementById("popup").style.display = "none";
         });
 
+        $(".unit_price").on('change', function() {
+            var multiply = parseInt($(this).val()) * parseInt($(this).parent().next().find('.quantity').val());
+            if ($(this).parent().next().find('.quantity').val() != '') {
+                $('.taxable_amount').val(multiply);
+            }
+        });
+        $(".quantity").on('change', function() {
+            var multiply = parseInt($(this).val()) * parseInt($(this).parent().prev().find('.unit_price').val());
+            if ($(this).parent().prev().find('.unit_price').val() != '') {
+                $('.taxable_amount').val(multiply);
+            }
+        });
+
         function calculateTotal() {
             var totalSum = 0;
             $('.subtotal').each(function() {
